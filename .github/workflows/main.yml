@@ -20,7 +20,8 @@ jobs:
             core.setOutput('oidc_token', token);
 
       - name: Verify Token Generation
+        env:
+          MY_TOKEN: ${{ steps.get-token.outputs.oidc_token }}
         run: |
           echo "✅ OIDC Token generated successfully!"
-          TOKEN="${{ steps.get-token.outputs.oidc_token }}"
-          echo "Token length: ${#TOKEN}"
+          echo "Token length: ${#MY_TOKEN}"
